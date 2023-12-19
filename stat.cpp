@@ -12,7 +12,6 @@ public:
     virtual ~Stats() {}
     virtual void update(double val) = 0;
     virtual double eval() const = 0;
-    virtual std::string_view name() const = 0;
 };
 
 std::unique_ptr<Stats> create_stat_from_name(const std::string_view& name);
@@ -56,10 +55,6 @@ public:
     }
     double eval() const override {
         return sum_ / count_;
-    }
-    std::string_view name() const override {
-        using namespace std::literals;
-        return "mean"sv;
     }
 
 private:
